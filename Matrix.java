@@ -18,6 +18,8 @@ class Matrix
 	}
 	static void rankTwo(int array[][], int rows, int columns)
 	{
+		boolean rankNull = true;
+		int northWest, northEast, southWest, southEast, upperZero = 0, upperOne = 1, lowerZero = 0, lowerOne = 1, lastElement;
 		if (rows == 2 && columns == 2)
 		{
 			int rank = (array[0][0] * array[1][1]) - (array[0][1] * array[1][0]);
@@ -32,8 +34,7 @@ class Matrix
 		}
 		else if (rows == 2)
 		{
-			boolean rankNull = true;
-			int northWest, northEast, southWest, southEast, upperZero = 0, upperOne = 1, lowerZero = 0, lowerOne = 1, lastElement = columns - 1 ;
+			lastElement = columns - 1;
 			while (true)
 			{
 				northWest = array[0][upperZero];
@@ -78,9 +79,68 @@ class Matrix
 				rankOne(array, rows, columns);
 			}
 		}
+		else if (columns == 2)
+		{	
+			lastElement = rows - 1;
+			while (true)
+			{
+				northWest = array[upperZero][0];
+				northEast = array[upperOne][0];
+				southWest = array[lowerZero][1];
+				southEast = array[lowerOne][1];
+				int rankTwoColumns = ((northWest * southEast) - (northEast * southWest));
+				if (rankTwoColumns != 0)
+				{
+					System.out.print("Its rank is Two\n");
+					rankNull = false;
+					break;
+				}
+				if (lowerZero == array[lastElement][0] && lowerOne == array[lastElement][1])
+				{
+					upperZero = lastElement;
+					upperOne = lastElement;
+					lowerZero = 0;
+					lowerOne = 0;
+					northWest = array[upperZero][0];
+					northEast = array[upperOne][0];
+					southWest = array[lowerZero][1];
+					southEast = array[lowerOne][1];
+					rankTwoColumns = ((northWest * southEast) - (northEast * southWest));
+					if (rankTwoColumns != 0)
+					{
+						System.out.print("Its rank is Two\n");
+						rankNull = false;
+					}
+					break;
+				}
+				else
+				{
+					upperZero = upperZero + 1;
+					upperOne = upperOne + 1;
+					lowerZero = lowerZero + 1;
+					lowerOne = lowerOne + 1;
+				}
+			}
+			if (rankNull)
+			{
+				rankOne(array, rows, columns);
+			}
+		}
 	}
 	static void rankThree(int array[][], int rows, int columns)
 	{
+		if (rows == 3 && columns == 3)
+		{
+			int rank = (array[0][0] * ((array[1][1] * array[2][2]) - (array[2][1] * array[1][2]))) - Math.abs(array[0][1] * ((array[1][0] * array[2][2]) - (array[2][0] * array[1][2]))) + (array[0][0] * ((array[1][1] * array[2][2]) - (array[2][1] * array[1][2])));
+			if (rank != 0)
+			{
+				System.out.print("Its rank is Three\n");
+			}
+			else
+			{
+				// WTF is this !!!
+			}
+		}
 	}
 	static void printRank(int array[][], int rows, int columns)
 	{
