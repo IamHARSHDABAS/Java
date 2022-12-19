@@ -17,7 +17,7 @@ class Matrix
 		}
 		System.out.print("Its a Zero matrix\n");
 	}
-	static void rankTwo(int array[][], int rows, int columns)
+	static boolean rankTwo(int array[][], int rows, int columns)
 	{
 		boolean rankNull = true;
 		int northWest, northEast, southWest, southEast, upperZero = 0, upperOne = 1, lowerZero = 0, lowerOne = 1, lastElement;
@@ -127,6 +127,7 @@ class Matrix
 				rankOne(array, rows, columns);
 			}
 		}
+		return rankNull;
 	}
 	static void rankThree(int array[][], int rows, int columns)
 	{
@@ -141,7 +142,7 @@ class Matrix
 			}
 			else
 			{
-				// xxx
+				rankThreeTwo(array, rows, columns);
 			}
 		}
 		else if (rows < columns)
@@ -230,6 +231,10 @@ class Matrix
 					lower = lower + 1;
 					lowerOne = lowerOne + 1;
 				}
+			}
+			if (rankNull)
+			{
+				rankThreeTwo(array, rows, columns);
 			}
 		}
 		else if (rows < columns)
@@ -321,6 +326,19 @@ class Matrix
 			}
 		}
 	}
+	static void rankThreeTwo(int array[][], int rows, int columns)
+	{
+		int arrayTemp[][] = new int[2][columns];
+		for (int exitLoop = 0; exitLoop < rows; exitLoop++)
+		{
+			arrayTemp[exitLoop] = array[exitLoop];
+			arrayTemp[exitLoop + 1] = array[exitLoop + 1];
+			if (rankTwo(arrayTemp, rows, columns))
+			{
+				break;
+			}
+		}
+	}
 	static void printRank(int array[][], int rows, int columns)
 	{
 		if (rows == 1 || columns == 1)
@@ -350,7 +368,7 @@ class Matrix
 	public static void main(String args[])
 	{
 		try (Scanner input = new Scanner(System.in)) {
-			System.out.print("DONT USE MATRIX ROWS OR COLUMNS GREATER THAN 2\nONE MUST BE 1 OR 2\nNO 0 OK\nIT IS STILL UNFINISHED\n");
+			System.out.print("DONT USE MATRIX ROWS OR COLUMNS GREATER THAN 3\nONE MUST BE 1, 2 OR 3\nNo 0 in rows and columns\nIT IS STILL UNFINISHED\n");
 			System.out.print("Enter total number of rows    : ");
 			int rows = input.nextInt();
 			System.out.print("Enter total number of columns : ");
