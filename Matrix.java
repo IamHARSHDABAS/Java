@@ -367,7 +367,8 @@ class Matrix
 	}
 	public static void main(String args[])
 	{
-		try (Scanner input = new Scanner(System.in)) {
+		try (Scanner input = new Scanner(System.in))
+		{
 			System.out.print("DONT USE MATRIX ROWS OR COLUMNS GREATER THAN 3\nONE MUST BE 1, 2 OR 3\nNo 0 in rows and columns\nIT IS STILL UNFINISHED\n");
 			System.out.print("Enter total number of rows    : ");
 			int rows = input.nextInt();
@@ -384,6 +385,10 @@ class Matrix
 			System.out.print("Your matrix is\n");
 			printArray(array, rows, columns);
 			printRank(array, rows, columns);
+		}
+		catch (Exception inpuException)
+		{
+			System.out.print("Invalid input\n");
 		}
 	}
 }
