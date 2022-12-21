@@ -28,7 +28,7 @@ class Matrix
 			if (rank != 0)
 			{
 				System.out.print("Its rank is Two\n");
-				System.out.print("Elements\n" + array[0][0] + " " + array[0][1] + "\n" + array[1][0] + " " + array[1][1]);
+				System.out.println("Elements\n" + array[0][0] + " " + array[0][1] + "\n" + array[1][0] + " " + array[1][1]);
 			}
 			else
 			{
