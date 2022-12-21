@@ -11,6 +11,7 @@ class Matrix
 				if (array[exitLoopOuter][exitLoopInner] != 0)
 				{
 					System.out.print("Its Rank is 1\n");
+					System.out.println("element  = " + array[exitLoopOuter][exitLoopInner]);
 					return;
 				}
 			}
@@ -27,6 +28,7 @@ class Matrix
 			if (rank != 0)
 			{
 				System.out.print("Its rank is Two\n");
+				System.out.print("Elements\n" + array[0][0] + " " + array[0][1] + "\n" + array[1][0] + " " + array[1][1]);
 			}
 			else
 			{
@@ -46,6 +48,7 @@ class Matrix
 				if (rankTwoRows != 0)
 				{
 					System.out.print("Its rank is Two\n");
+					System.out.println("Element\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast);
 					rankNull = false;
 					break;
 				}
@@ -63,6 +66,7 @@ class Matrix
 					if (rankTwoRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
+						System.out.println("Element\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast);
 						rankNull = false;
 					}
 					break;
@@ -93,6 +97,7 @@ class Matrix
 				if (rankTwoColumns != 0)
 				{
 					System.out.print("Its rank is Two\n");
+					System.out.println("Element\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast);
 					rankNull = false;
 					break;
 				}
@@ -110,6 +115,7 @@ class Matrix
 					if (rankTwoColumns != 0)
 					{
 						System.out.print("Its rank is Two\n");
+						System.out.println("Element\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast);
 						rankNull = false;
 					}
 					break;
@@ -139,6 +145,7 @@ class Matrix
 			if (rankThree != 0)
 			{
 				System.out.print("Its rank is Three\n");
+				System.out.println("Element\n" + array[0][0] + " " + array[0][1] + " " + array[0][2] + "\n" + array[1][0] + " " + array[1][1] + " " + array[1][2] + "\n" + array[2][0] + " " + array[2][1] + " " + array[2][2]);
 			}
 			else
 			{
@@ -163,6 +170,7 @@ class Matrix
 				if (rankThreeRows != 0)
 				{
 					System.out.print("Its rank is Three\n");
+					System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 					rankNull = false;
 					break;
 				}
@@ -190,6 +198,7 @@ class Matrix
 					if (rankThreeRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
+						System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 						rankNull = false;
 						break;
 					}
@@ -215,6 +224,7 @@ class Matrix
 					if (rankThreeRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
+						System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 						rankNull = false;
 					}
 					break;
@@ -255,6 +265,7 @@ class Matrix
 				if (rankThreeRows != 0)
 				{
 					System.out.print("Its rank is Three\n");
+					System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 					rankNull = false;
 					break;
 				}
@@ -282,6 +293,7 @@ class Matrix
 					if (rankThreeRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
+						System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 						rankNull = false;
 						break;
 					}
@@ -307,6 +319,7 @@ class Matrix
 					if (rankThreeRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
+						System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 						rankNull = false;
 					}
 					break;
