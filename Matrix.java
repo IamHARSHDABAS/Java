@@ -29,10 +29,11 @@ class Matrix
 			if (rank != 0)
 			{
 				System.out.print("\nIts rank is Two\n");
+				rankNull = false;
 			}
 			else
 			{
-				if (rankPass)
+				if (rankNull && rankPass)
 				{
 					rankOne(array, rows, columns);
 				}
@@ -40,7 +41,7 @@ class Matrix
 		}
 		else if (rows < columns)
 		{
-			lastElement = rows - 1;
+			lastElement = columns - 1;
 			while (true)
 			{
 				northWest = array[0][upperZero];
@@ -55,7 +56,7 @@ class Matrix
 					rankNull = false;
 					break;
 				}
-				else if (upperOne == array[0][lastElement] && lowerOne == array[1][lastElement])
+				if (upperOne == array[0][lastElement] && lowerOne == array[1][lastElement])
 				{
 					upperZero = lastElement;
 					upperOne = 0;
@@ -71,8 +72,8 @@ class Matrix
 					{
 						System.out.print("Its rank is Two\n");
 						rankNull = false;
+						break;
 					}
-					break;
 				}
 				else
 				{
@@ -89,7 +90,7 @@ class Matrix
 		}
 		else if (rows > columns)
 		{	
-			lastElement = columns - 1;
+			lastElement = rows - 1;
 			while (true)
 			{
 				northWest = array[upperZero][0];
@@ -104,7 +105,7 @@ class Matrix
 					rankNull = false;
 					break;
 				}
-				else if (lowerZero == array[lastElement][0] && lowerOne == array[lastElement][1])
+				if (lowerZero == array[lastElement][0] && lowerOne == array[lastElement][1])
 				{
 					upperZero = lastElement;
 					upperOne = lastElement;
@@ -120,8 +121,8 @@ class Matrix
 					{
 						System.out.print("Its rank is Two\n");
 						rankNull = false;
+						break;
 					}
-					break;
 				}
 				else
 				{
@@ -136,7 +137,7 @@ class Matrix
 				rankOne(array, rows, columns);
 			}
 		}
-		return rankNull;
+		return false;
 	}
 	static void rankThree(int array[][], int rows, int columns)
 	{
@@ -178,7 +179,7 @@ class Matrix
 					rankNull = false;
 					break;
 				}
-				else if (upperOne == array[0][lastElement] && one == array[0][lastElement] && lowerOne == array[0][lastElement])
+				if (upperOne == array[0][lastElement] && one == array[0][lastElement] && lowerOne == array[0][lastElement])
 				{
 					upperZero = lastElement - 1;
 					upper = lastElement;
@@ -273,7 +274,7 @@ class Matrix
 					rankNull = false;
 					break;
 				}
-				else if (lowerZero == array[0][lastElement] && lower == array[0][lastElement] && lowerOne == array[0][lastElement])
+				if (lowerZero == array[0][lastElement] && lower == array[0][lastElement] && lowerOne == array[0][lastElement])
 				{
 					upperZero = lastElement - 1;
 					upper = lastElement;
@@ -346,14 +347,26 @@ class Matrix
 	static void rankThreeTwo(int array[][], int rows, int columns)
 	{
 		boolean rankPass = false;
+		int loopStart = 0, loopEnd = 2, rowsTemp = 2;
 		int arrayTemp[][] = new int[2][columns];
-		for (int exitLoop = 0; exitLoop < rows; exitLoop++)
+		while (true)
 		{
-			arrayTemp[exitLoop] = array[exitLoop];
-			arrayTemp[exitLoop + 1] = array[exitLoop + 1];
-			if (rankTwo(arrayTemp, rows, columns, rankPass) == false)
+			for (int exitLoopOuter = loopStart; exitLoopOuter < loopEnd; exitLoopOuter++)
+			{
+				for (int exitLoopInner = 0; exitLoopInner < columns; exitLoopInner++)
+				{
+					arrayTemp[exitLoopOuter][exitLoopInner] = array[exitLoopOuter][exitLoopInner];
+				}
+			}
+			loopStart++;
+			loopEnd++;
+			if (loopStart > (rows - 2))
 			{
 				break;
+			}
+			if (rankTwo(arrayTemp, rowsTemp, columns, rankPass) == false)
+			{
+				rankOne(array, rows, columns);
 			}
 		}
 	}
