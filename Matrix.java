@@ -41,7 +41,7 @@ class Matrix
 		}
 		else if (rows < columns)
 		{
-			lastElement = columns - 1;
+			lastElement = rows - 1;
 			while (true)
 			{
 				northWest = array[0][upperZero];
@@ -54,9 +54,9 @@ class Matrix
 				{
 					System.out.print("Its rank is Two\n");
 					rankNull = false;
-					break;
+					return true;
 				}
-				if (upperOne == array[0][lastElement] && lowerOne == array[1][lastElement])
+				else if (upperOne == array[0][lastElement] && lowerOne == array[1][lastElement])
 				{
 					upperZero = lastElement;
 					upperOne = 0;
@@ -72,8 +72,9 @@ class Matrix
 					{
 						System.out.print("Its rank is Two\n");
 						rankNull = false;
-						break;
+						return true;
 					}
+				break;
 				}
 				else
 				{
@@ -90,7 +91,7 @@ class Matrix
 		}
 		else if (rows > columns)
 		{	
-			lastElement = rows - 1;
+			lastElement = columns - 1;
 			while (true)
 			{
 				northWest = array[upperZero][0];
@@ -103,9 +104,9 @@ class Matrix
 				{
 					System.out.print("Its rank is Two\n");
 					rankNull = false;
-					break;
+					return true;
 				}
-				if (lowerZero == array[lastElement][0] && lowerOne == array[lastElement][1])
+				else if (lowerZero == array[lastElement][0] && lowerOne == array[lastElement][1])
 				{
 					upperZero = lastElement;
 					upperOne = lastElement;
@@ -121,8 +122,9 @@ class Matrix
 					{
 						System.out.print("Its rank is Two\n");
 						rankNull = false;
-						break;
+						return true;
 					}
+				break;
 				}
 				else
 				{
@@ -358,15 +360,17 @@ class Matrix
 					arrayTemp[exitLoopOuter][exitLoopInner] = array[exitLoopOuter][exitLoopInner];
 				}
 			}
+			System.out.print("\n");
+			printArray(arrayTemp, rowsTemp, columns);
+			if (rankTwo(arrayTemp, rowsTemp, columns, rankPass))
+			{
+				break;
+			}
 			loopStart++;
 			loopEnd++;
 			if (loopStart > (rows - 2))
 			{
 				break;
-			}
-			if (rankTwo(arrayTemp, rowsTemp, columns, rankPass) == false)
-			{
-				rankOne(array, rows, columns);
 			}
 		}
 	}
