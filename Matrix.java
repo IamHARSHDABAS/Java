@@ -1,43 +1,46 @@
-
 import java.util.Scanner;
 class Matrix
 {
 	static void rankOne(int array[][], int rows, int columns)
 	{
+		System.out.print("\nMatrix will be checked for rank one\nIf one of the element is a non zero\nThe rank of the matrix will be one");
 		for (int exitLoopOuter = 0; exitLoopOuter < rows; exitLoopOuter++)
 		{
 			for (int exitLoopInner = 0; exitLoopInner < columns; exitLoopInner++)
 			{
 				if (array[exitLoopOuter][exitLoopInner] != 0)
 				{
-					System.out.print("Its Rank is 1\n");
-					System.out.println("element  = " + array[exitLoopOuter][exitLoopInner]);
+					System.out.print("\n" + array[exitLoopOuter][exitLoopInner]  + "\nIts Rank is 1\n");
 					return;
 				}
 			}
 		}
-		System.out.print("Its a Zero matrix\n");
+		System.out.print("\nIts a Zero matrix\n");
 	}
-	static boolean rankTwo(int array[][], int rows, int columns)
+	static boolean rankTwo(int array[][], int rows, int columns, boolean rankPass)
 	{
 		boolean rankNull = true;
 		int northWest, northEast, southWest, southEast, upperZero = 0, upperOne = 1, lowerZero = 0, lowerOne = 1, lastElement;
+		System.out.print("\nMatrix will be checked for rank Two\nIf one of the 2x2 determinant is a non zero\nThe rank of the matrix will be Two");
 		if (rows == columns)
 		{
 			int rank = (array[0][0] * array[1][1]) - (array[0][1] * array[1][0]);
+			System.out.print("\n" + array[0][0] + " " + array[0][1] + "\n" + array[1][0] + " " + array[1][1] + "\nIts determinant is: " + rank);
 			if (rank != 0)
 			{
-				System.out.print("Its rank is Two\n");
-				System.out.println("Elements\n" + array[0][0] + " " + array[0][1] + "\n" + array[1][0] + " " + array[1][1]);
+				System.out.print("\nIts rank is Two\n");
 			}
 			else
 			{
-				rankOne(array, rows, columns);
+				if (rankPass)
+				{
+					rankOne(array, rows, columns);
+				}
 			}
 		}
 		else if (rows < columns)
 		{
-			lastElement = columns - 1;
+			lastElement = rows - 1;
 			while (true)
 			{
 				northWest = array[0][upperZero];
@@ -45,14 +48,14 @@ class Matrix
 				southWest = array[1][lowerZero];
 				southEast = array[1][lowerOne];
 				int rankTwoRows = ((northWest * southEast) - (northEast * southWest));
+				System.out.print("\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast + "\nIts determinant is: " + rankTwoRows);
 				if (rankTwoRows != 0)
 				{
 					System.out.print("Its rank is Two\n");
-					System.out.println("Element\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast);
 					rankNull = false;
 					break;
 				}
-				if (upperOne == array[0][lastElement] && lowerOne == array[1][lastElement])
+				else if (upperOne == array[0][lastElement] && lowerOne == array[1][lastElement])
 				{
 					upperZero = lastElement;
 					upperOne = 0;
@@ -63,10 +66,10 @@ class Matrix
 					southWest = array[1][lowerZero];
 					southEast = array[1][lowerOne];
 					rankTwoRows = ((northWest * southEast) - (northEast * southWest));
+					System.out.print("\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast + "\nIts determinant is: " + rankTwoRows);
 					if (rankTwoRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
-						System.out.println("Element\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast);
 						rankNull = false;
 					}
 					break;
@@ -79,14 +82,14 @@ class Matrix
 					lowerOne = lowerOne + 1;
 				}
 			}
-			if (rankNull)
+			if (rankNull && rankPass)
 			{
 				rankOne(array, rows, columns);
 			}
 		}
 		else if (rows > columns)
 		{	
-			lastElement = rows - 1;
+			lastElement = columns - 1;
 			while (true)
 			{
 				northWest = array[upperZero][0];
@@ -94,14 +97,14 @@ class Matrix
 				southWest = array[lowerZero][1];
 				southEast = array[lowerOne][1];
 				int rankTwoColumns = ((northWest * southEast) - (northEast * southWest));
+				System.out.print("\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast + "\nIts determinant is: " + rankTwoColumns);
 				if (rankTwoColumns != 0)
 				{
 					System.out.print("Its rank is Two\n");
-					System.out.println("Element\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast);
 					rankNull = false;
 					break;
 				}
-				if (lowerZero == array[lastElement][0] && lowerOne == array[lastElement][1])
+				else if (lowerZero == array[lastElement][0] && lowerOne == array[lastElement][1])
 				{
 					upperZero = lastElement;
 					upperOne = lastElement;
@@ -112,10 +115,10 @@ class Matrix
 					southWest = array[lowerZero][1];
 					southEast = array[lowerOne][1];
 					rankTwoColumns = ((northWest * southEast) - (northEast * southWest));
+					System.out.print("\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast + "\nIts determinant is: " + rankTwoColumns);
 					if (rankTwoColumns != 0)
 					{
 						System.out.print("Its rank is Two\n");
-						System.out.println("Element\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast);
 						rankNull = false;
 					}
 					break;
@@ -128,7 +131,7 @@ class Matrix
 					lowerOne = lowerOne + 1;
 				}
 			}
-			if (rankNull)
+			if (rankNull && rankPass)
 			{
 				rankOne(array, rows, columns);
 			}
@@ -139,13 +142,14 @@ class Matrix
 	{
 		boolean rankNull = true;
 		int northWest, north, northEast, east, southEast, south, southWest, west, center, upperZero = 0, upper = 1, upperOne = 2, zero = 0, main = 1, one = 2, lowerZero = 0, lower = 1, lowerOne = 2, lastElement;
+		System.out.print("Matrix will be checked for rank Three\nIf one of the 3x3 determinant is a non zero\nThe rank of the matrix will be Three\n");
 		if (rows == columns)
 		{
 			int rankThree = (array[0][0] * ((array[1][1] * array[2][2]) - (array[2][1] * array[1][2]))) - Math.abs(array[0][1] * ((array[1][0] * array[2][2]) - (array[2][0] * array[1][2]))) + (array[0][0] * ((array[1][1] * array[2][2]) - (array[2][1] * array[1][2])));
+			System.out.println("\n" + array[0][0] + " " + array[0][1] + " " + array[0][2] + "\n" + array[1][0] + " " + array[1][1] + " " + array[1][2] + "\n" + array[2][0] + " " + array[2][1] + " " + array[2][2] + "\nIts determinant is: " + rankThree);
 			if (rankThree != 0)
 			{
 				System.out.print("Its rank is Three\n");
-				System.out.println("Element\n" + array[0][0] + " " + array[0][1] + " " + array[0][2] + "\n" + array[1][0] + " " + array[1][1] + " " + array[1][2] + "\n" + array[2][0] + " " + array[2][1] + " " + array[2][2]);
 			}
 			else
 			{
@@ -154,7 +158,7 @@ class Matrix
 		}
 		else if (rows < columns)
 		{
-			lastElement = columns - 1;
+			lastElement = rows - 1;
 			while (true)
 			{
 				northWest = array[0][upperZero];
@@ -167,14 +171,14 @@ class Matrix
 				south = array[0][lower];
 				southEast = array[0][lowerOne];
 				int rankThreeRows = (northWest * ((center * southEast) - (south * east) - Math.abs(north * ((west * southEast) - (southWest * east)) + (northEast * ((west * south) - (southWest * center))))));
+				System.out.print("\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast + "\nIts determinant is: " + rankThreeRows);
 				if (rankThreeRows != 0)
 				{
 					System.out.print("Its rank is Three\n");
-					System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 					rankNull = false;
 					break;
 				}
-				if (upperOne == array[0][lastElement] && one == array[0][lastElement] && lowerOne == array[0][lastElement])
+				else if (upperOne == array[0][lastElement] && one == array[0][lastElement] && lowerOne == array[0][lastElement])
 				{
 					upperZero = lastElement - 1;
 					upper = lastElement;
@@ -195,10 +199,10 @@ class Matrix
 					south = array[0][lower];
 					southEast = array[0][lowerOne];
 					rankThreeRows = (northWest * ((center * southEast) - (south * east) - Math.abs(north * ((west * southEast) - (southWest * east)) + (northEast * ((west * south) - (southWest * center))))));
+					System.out.print("\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast + "\nIts determinant is: " + rankThreeRows);
 					if (rankThreeRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
-						System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 						rankNull = false;
 						break;
 					}
@@ -221,10 +225,10 @@ class Matrix
 					south = array[0][lower];
 					southEast = array[0][lowerOne];
 					rankThreeRows = (northWest * ((center * southEast) - (south * east) - Math.abs(north * ((west * southEast) - (southWest * east)) + (northEast * ((west * south) - (southWest * center))))));
+					System.out.print("\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast + "\nIts determinant is: " + rankThreeRows);
 					if (rankThreeRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
-						System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 						rankNull = false;
 					}
 					break;
@@ -249,7 +253,7 @@ class Matrix
 		}
 		else if (rows < columns)
 		{
-			lastElement = rows - 1;
+			lastElement = columns - 1;
 			while (true)
 			{
 				northWest = array[upperZero][0];
@@ -262,14 +266,14 @@ class Matrix
 				south = array[lower][0];
 				southEast = array[lowerOne][0];
 				int rankThreeRows = (northWest * ((center * southEast) - (south * east) - Math.abs(north * ((west * southEast) - (southWest * east)) + (northEast * ((west * south) - (southWest * center))))));
+				System.out.print("\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast + "\nIts determinant is: " + rankThreeRows);
 				if (rankThreeRows != 0)
 				{
 					System.out.print("Its rank is Three\n");
-					System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 					rankNull = false;
 					break;
 				}
-				if (lowerZero == array[0][lastElement] && lower == array[0][lastElement] && lowerOne == array[0][lastElement])
+				else if (lowerZero == array[0][lastElement] && lower == array[0][lastElement] && lowerOne == array[0][lastElement])
 				{
 					upperZero = lastElement - 1;
 					upper = lastElement;
@@ -290,10 +294,10 @@ class Matrix
 					south = array[lower][0];
 					southEast = array[lowerOne][0];
 					rankThreeRows = (northWest * ((center * southEast) - (south * east) - Math.abs(north * ((west * southEast) - (southWest * east)) + (northEast * ((west * south) - (southWest * center))))));
+					System.out.print("\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast + "\nIts determinant is: " + rankThreeRows);
 					if (rankThreeRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
-						System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 						rankNull = false;
 						break;
 					}
@@ -316,10 +320,10 @@ class Matrix
 					south = array[lower][0];
 					southEast = array[lowerOne][0];
 					rankThreeRows = (northWest * ((center * southEast) - (south * east) - Math.abs(north * ((west * southEast) - (southWest * east)) + (northEast * ((west * south) - (southWest * center))))));
+					System.out.print("\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast + "\nIts determinant is: " + rankThreeRows);
 					if (rankThreeRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
-						System.out.println("Element\n" + northWest + " " + north + " " + northEast + "\n" + west + " " + center + " " + east + "\n" + southWest + " " + south + " " + southEast);
 						rankNull = false;
 					}
 					break;
@@ -341,28 +345,27 @@ class Matrix
 	}
 	static void rankThreeTwo(int array[][], int rows, int columns)
 	{
+		boolean rankPass = false;
 		int arrayTemp[][] = new int[2][columns];
 		for (int exitLoop = 0; exitLoop < rows; exitLoop++)
 		{
 			arrayTemp[exitLoop] = array[exitLoop];
 			arrayTemp[exitLoop + 1] = array[exitLoop + 1];
-			if (rankTwo(arrayTemp, rows, columns))
-			{
-				break;
-			}
+			// printArray(arrayTemp, rows, columns);
+			rankTwo(arrayTemp, rows, columns, rankPass);
 		}
 	}
-	static void printRank(int array[][], int rows, int columns)
+	static void printRank(int array[][], int rows, int columns, boolean rankPass)
 	{
 		if (rows == 1 || columns == 1)
 		{
 			rankOne(array, rows, columns);
 		}
-		if (rows == 2 || columns == 2)
+		else if (rows == 2 || columns == 2)
 		{
-			rankTwo(array, rows, columns);
+			rankTwo(array, rows, columns, rankPass);
 		}
-		if (rows == 3 || columns == 3)
+		else if (rows == 3 || columns == 3)
 		{
 			rankThree(array, rows, columns);
 		}
@@ -380,28 +383,23 @@ class Matrix
 	}
 	public static void main(String args[])
 	{
-		try (Scanner input = new Scanner(System.in))
+		Scanner input = new Scanner(System.in);
+		System.out.print("The total number of rows or columns must be 1, 2 or 3\n");
+		System.out.print("Enter total number of rows    : ");
+		int rows = input.nextInt();
+		System.out.print("Enter total number of columns : ");
+		int columns = input.nextInt();
+		boolean rankPass = true;
+		int array[][] = new int[rows][columns];
+		for (int exitLoopOuter = 0; exitLoopOuter < rows; exitLoopOuter++)
 		{
-			System.out.print("DONT USE MATRIX ROWS OR COLUMNS GREATER THAN 3\nONE MUST BE 1, 2 OR 3\nNo 0 in rows and columns\nIT IS STILL UNFINISHED\n");
-			System.out.print("Enter total number of rows    : ");
-			int rows = input.nextInt();
-			System.out.print("Enter total number of columns : ");
-			int columns = input.nextInt();
-			int array[][] = new int[rows][columns];
-			for (int exitLoopOuter = 0; exitLoopOuter < rows; exitLoopOuter++)
+			for (int exitLoopInner = 0; exitLoopInner < columns; exitLoopInner++)
 			{
-				for (int exitLoopInner = 0; exitLoopInner < columns; exitLoopInner++)
-				{
-					array[exitLoopOuter][exitLoopInner] = input.nextInt();
-				}
+				array[exitLoopOuter][exitLoopInner] = input.nextInt();
 			}
-			System.out.print("Your matrix is\n");
-			printArray(array, rows, columns);
-			printRank(array, rows, columns);
 		}
-		catch (Exception inpuException)
-		{
-			System.out.print("Invalid input\n");
-		}
+		System.out.print("Your matrix is\n");
+		printArray(array, rows, columns);
+		printRank(array, rows, columns, rankPass);
 	}
 }
