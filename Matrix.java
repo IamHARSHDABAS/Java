@@ -351,8 +351,10 @@ class Matrix
 		{
 			arrayTemp[exitLoop] = array[exitLoop];
 			arrayTemp[exitLoop + 1] = array[exitLoop + 1];
-			// printArray(arrayTemp, rows, columns);
-			rankTwo(arrayTemp, rows, columns, rankPass);
+			if (rankTwo(arrayTemp, rows, columns, rankPass) == false)
+			{
+				break;
+			}
 		}
 	}
 	static void printRank(int array[][], int rows, int columns, boolean rankPass)
