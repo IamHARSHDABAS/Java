@@ -1,7 +1,7 @@
 import java.util.Scanner;
 class matrix
 {
-	static void rankOne(int array[][], int rows, int columns)
+	static void rankOne(int[][] array, int rows, int columns)
 	{
 		System.out.print("\nMatrix will be checked for rank one\nIf one of the element is a non zero\nThe rank of the matrix will be one");
 		for (int exitLoopOuter = 0; exitLoopOuter < rows; exitLoopOuter++)
@@ -17,11 +17,10 @@ class matrix
 		}
 		System.out.print("\nIts a Zero matrix\n");
 	}
-	static boolean rankTwo(int array[][], int rows, int columns, boolean rankPass)
+	static boolean rankTwo(int[][] array, int rows, int columns, boolean rankPass)
 	{
-		boolean rankNull = true;
 		int northWest, northEast, southWest, southEast, upperZero = 0, upperOne = 1, lowerZero = 0, lowerOne = 1, lastElement;
-		System.out.print("\nMatrix will be checked for rank Two\nIf one of the 2x2 determinant is a non zero\nThe rank of the matrix will be Two");
+		System.out.print("Matrix will be checked for rank Two\nIf one of the 2x2 determinant is a non zero\nThe rank of the matrix will be Two");
 		if (rows == columns)
 		{
 			int rank = (array[0][0] * array[1][1]) - (array[0][1] * array[1][0]);
@@ -29,11 +28,10 @@ class matrix
 			if (rank != 0)
 			{
 				System.out.print("\nIts rank is Two\n");
-				rankNull = false;
 			}
 			else
 			{
-				if (rankNull && rankPass)
+				if (rankPass)
 				{
 					rankOne(array, rows, columns);
 				}
@@ -53,7 +51,6 @@ class matrix
 				if (rankTwoRows != 0)
 				{
 					System.out.print("Its rank is Two\n");
-					rankNull = false;
 					return true;
 				}
 				else if (upperOne == lastElement && lowerOne == lastElement)
@@ -71,7 +68,6 @@ class matrix
 					if (rankTwoRows != 0)
 					{
 						System.out.print("Its rank is Two\n");
-						rankNull = false;
 						return true;
 					}
 				break;
@@ -84,30 +80,25 @@ class matrix
 					lowerOne = lowerOne + 1;
 				}
 			}
-			if (rankNull && rankPass)
+			if (rankPass)
 			{
 				rankOne(array, rows, columns);
 			}
 		}
-		else if (rows > columns)
-		{	
+		else
+		{
 			lastElement = rows - 1;
-			while (true)
-			{
+			while (true) {
 				northWest = array[upperZero][0];
 				northEast = array[upperOne][0];
 				southWest = array[lowerZero][1];
 				southEast = array[lowerOne][1];
 				int rankTwoColumns = ((northWest * southEast) - (northEast * southWest));
 				System.out.print("\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast + "\nIts determinant is: " + rankTwoColumns);
-				if (rankTwoColumns != 0)
-				{
+				if (rankTwoColumns != 0) {
 					System.out.print("Its rank is Two\n");
-					rankNull = false;
 					return true;
-				}
-				else if (lowerZero == array[lastElement][0] && lowerOne == array[lastElement][1])
-				{
+				} else if (lowerZero == array[lastElement][0] && lowerOne == array[lastElement][1]) {
 					upperZero = lastElement;
 					upperOne = lastElement;
 					lowerZero = 0;
@@ -118,34 +109,29 @@ class matrix
 					southEast = array[lowerOne][1];
 					rankTwoColumns = ((northWest * southEast) - (northEast * southWest));
 					System.out.print("\n" + northWest + " " + northEast + "\n" + southWest + " " + southEast + "\nIts determinant is: " + rankTwoColumns);
-					if (rankTwoColumns != 0)
-					{
+					if (rankTwoColumns != 0) {
 						System.out.print("Its rank is Two\n");
-						rankNull = false;
 						return true;
 					}
-				break;
-				}
-				else
-				{
+					break;
+				} else {
 					upperZero = upperZero + 1;
 					upperOne = upperOne + 1;
 					lowerZero = lowerZero + 1;
 					lowerOne = lowerOne + 1;
 				}
 			}
-			if (rankNull && rankPass)
-			{
+			if (rankPass) {
 				rankOne(array, rows, columns);
 			}
 		}
 		return false;
 	}
-	static void rankThree(int array[][], int rows, int columns)
+	static void rankThree(int[][] array, int rows, int columns)
 	{
 		boolean rankNull = true;
 		int northWest, north, northEast, east, southEast, south, southWest, west, center, upperZero = 0, upper = 1, upperOne = 2, zero = 0, main = 1, one = 2, lowerZero = 0, lower = 1, lowerOne = 2, lastElement;
-		System.out.print("Matrix will be checked for rank Three\nIf one of the 3x3 determinant is a non zero\nThe rank of the matrix will be Three\n");
+		System.out.print("Matrix will be checked for rank Three\nIf one of the 3x3 determinant is a non zero\nThe rank of the matrix will be Three");
 		if (rows == columns)
 		{
 			int rankThree = (array[0][0] * ((array[1][1] * array[2][2]) - (array[2][1] * array[1][2]))) - Math.abs(array[0][1] * ((array[1][0] * array[2][2]) - (array[2][0] * array[1][2]))) + (array[0][0] * ((array[1][1] * array[2][2]) - (array[2][1] * array[1][2])));
@@ -181,7 +167,7 @@ class matrix
 					rankNull = false;
 					break;
 				}
-				else if (upperOne == lastElement && one == lastElement && lowerOne == lastElement)
+				else if (lowerOne == lastElement)
 				{
 					upperZero = lastElement - 1;
 					upper = lastElement;
@@ -254,8 +240,7 @@ class matrix
 				rankThreeTwo(array, rows, columns);
 			}
 		}
-		else if (rows > columns)
-		{
+		else {
 			lastElement = rows - 1;
 			while (true)
 			{
@@ -276,7 +261,7 @@ class matrix
 					rankNull = false;
 					break;
 				}
-				else if (lowerZero == lastElement && lower == lastElement && lowerOne == lastElement)
+				else if (lowerOne == lastElement)
 				{
 					upperZero = lastElement - 1;
 					upper = lastElement;
@@ -344,13 +329,17 @@ class matrix
 					lowerOne = lowerOne + 1;
 				}
 			}
+			if (rankNull)
+			{
+				rankThreeTwo(array, rows, columns);
+			}
 		}
 	}
-	static void rankThreeTwo(int array[][], int rows, int columns)
+	static void rankThreeTwo(int[][] array, int rows, int columns)
 	{
 		boolean rankPass = false;
 		int loopStart = 0, loopEnd = 2, rowsTemp = 2;
-		int arrayTemp[][] = new int[2][columns];
+		int[][] arrayTemp = new int[2][columns];
 		while (true)
 		{
 			int exitLoopOuterTemp = 0;
@@ -366,7 +355,7 @@ class matrix
 			}
 			System.out.print("\n");
 			printArray(arrayTemp, rowsTemp, columns);
-			if (rankTwo(arrayTemp, rowsTemp, columns, rankPass))
+			if (rankTwo(arrayTemp, rowsTemp, columns, false))
 			{
 				break;
 			}
@@ -383,7 +372,7 @@ class matrix
 			rankOne(array, rows, columns);
 		}
 	}
-	static void printRank(int array[][], int rows, int columns, boolean rankPass)
+	static void printRank(int[][] array, int rows, int columns, boolean rankPass)
 	{
 		if (rows == 1 || columns == 1)
 		{
@@ -398,7 +387,7 @@ class matrix
 			rankThree(array, rows, columns);
 		}
 	}
-	static void printArray(int array[][], int rows, int columns)
+	static void printArray(int[][] array, int rows, int columns)
 	{
 		for (int exitLoopOuter = 0; exitLoopOuter < rows; exitLoopOuter++)
 		{
@@ -409,7 +398,7 @@ class matrix
 		System.out.print("\n");
 		}
 	}
-	public static void main(String args[])
+	public static void main(String[] args)
 	{
 		Scanner input = new Scanner(System.in);
 		System.out.print("The total number of rows or columns must be 1, 2 or 3\n");
@@ -418,7 +407,7 @@ class matrix
 		System.out.print("Enter total number of columns : ");
 		int columns = input.nextInt();
 		boolean rankPass = true;
-		int array[][] = new int[rows][columns];
+		int[][] array = new int[rows][columns];
 		for (int exitLoopOuter = 0; exitLoopOuter < rows; exitLoopOuter++)
 		{
 			for (int exitLoopInner = 0; exitLoopInner < columns; exitLoopInner++)
