@@ -1,5 +1,5 @@
 import java.util.Scanner;
-class matrix
+class Matrix
 {
 	static void rankOne(int[][] array, int rows, int columns)
 	{
