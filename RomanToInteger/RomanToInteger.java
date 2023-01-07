@@ -8,8 +8,10 @@ public class RomanToInteger
 		String number = input.nextLine().trim().toUpperCase();
 		String[] array = number.split("");
 		int current = 0, previous = 0, sum = 0;
-		for (int exitLoop = array.length; exitLoop > 0; exitLoop--) {
-			switch (array[exitLoop - 1]) {
+		for (int exitLoop = array.length; exitLoop > 0; exitLoop--)
+		{
+			switch (array[exitLoop - 1])
+			{
 				case "I" -> current = 1;
 				case "V" -> current = 5;
 				case "X" -> current = 10;
@@ -18,9 +20,12 @@ public class RomanToInteger
 				case "D" -> current = 500;
 				case "M" -> current = 1000;
 			}
-			if (previous > current) {
+			if (previous > current)
+			{
 				sum = sum - current;
-			} else {
+			}
+			else
+			{
 				sum = sum + current;
 			}
 			previous = current;
