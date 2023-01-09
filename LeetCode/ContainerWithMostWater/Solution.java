@@ -9,10 +9,18 @@ class Solution
 		{
 			int leftHeight = height[left];
 			int rightHeight = height[right];
-			int minHeight = Math.min(leftHeight, rightHeight);
-			area = Math.max(area, minHeight * (right - left));
-			if (leftHeight < rightHeight) left++;
-			else right--;
+			if (leftHeight < rightHeight)
+			{
+				int minHeight = Math.min(leftHeight, rightHeight);
+				area = Math.max(area, minHeight * (right - left));
+				left++;
+			}
+			else
+			{
+				int minHeight = Math.min(leftHeight, rightHeight);
+				area = Math.max(area, minHeight * (right - left));
+				right--;
+			}
 		}
 		return area;
 	}
