@@ -1,11 +1,7 @@
-import java.util.Scanner;
-public class RomanToInteger
+class Solution
 {
-	public static void main(String[] args)
+	public int romanToInt(String number)
 	{
-		Scanner input = new Scanner(System.in);
-		System.out.print("Symbol	Value\nI	1\nV	5\nX	10\nL	50\nC	100\nD	500\nM	1000\nEnter roman number: ");
-		String number = input.nextLine().trim().toUpperCase();
 		String[] array = number.split("");
 		int current = 0, previous = 0, sum = 0;
 		for (int exitLoop = array.length; exitLoop > 0; exitLoop--)
@@ -30,6 +26,6 @@ public class RomanToInteger
 			}
 			previous = current;
 		}
-		System.out.println(sum);
+		return sum;
 	}
 }
