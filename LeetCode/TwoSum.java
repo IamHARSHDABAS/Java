@@ -6,7 +6,10 @@ class TwoSum
 		{
 			for (int exitLoopInner = exitLoopOuter + 1; exitLoopInner < number.length; exitLoopInner++)
 			{
-				if (number[exitLoopOuter] + number[exitLoopInner] == target) return new int[] {exitLoopOuter, exitLoopInner};
+				if (number[exitLoopOuter] + number[exitLoopInner] == target)
+				{
+					return new int[] {exitLoopOuter, exitLoopInner};
+				}
 			}
 		}
 	return new int[0];
