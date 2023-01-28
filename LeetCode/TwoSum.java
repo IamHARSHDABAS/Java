@@ -1,4 +1,4 @@
-public class Solution
+class TwoSum
 {
 	public int[] twoSum(int[] number, int target)
 	{
@@ -6,12 +6,9 @@ public class Solution
 		{
 			for (int exitLoopInner = exitLoopOuter + 1; exitLoopInner < number.length; exitLoopInner++)
 			{
-				if (number[exitLoopOuter] + number[exitLoopInner] == target)
-				{
-					return new int[] {exitLoopOuter, exitLoopInner};
-				}
+				if (number[exitLoopOuter] + number[exitLoopInner] == target) return new int[] {exitLoopOuter, exitLoopInner};
 			}
 		}
-	return null;
+	return new int[0];
 	}
 }

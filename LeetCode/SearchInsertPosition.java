@@ -1,8 +1,10 @@
-class Solution
+class SearchInsertPosition
 {
 	public int searchInsert(int[] array, int target)
 	{
-		int min = 0, mid, max = array.length - 1;
+		int min = 0;
+		int mid;
+		int max = array.length - 1;
 		while (min <= max)
 		{
 			mid = (min + max)/2;

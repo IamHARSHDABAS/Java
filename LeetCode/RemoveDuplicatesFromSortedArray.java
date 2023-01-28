@@ -1,9 +1,11 @@
-class Solution
+class RemoveDuplicatesFromSortedArray
 {
 	public int removeDuplicates(int[] number)
 	{
 		// TODO convert -6969 to clean version
-		int current,  last = -6969, pointer = 0;
+		int current;
+		int last = -6969;
+		int pointer = 0;
 		for (int exitLoop : number)
 		{
 			current = exitLoop;
@@ -14,10 +16,7 @@ class Solution
 			}
 			last = current;
 		}
-		for (int exitLoop = pointer; exitLoop < number.length; exitLoop++)
-		{
-			number[exitLoop] = 0;
-		}
+		for (int exitLoop = pointer; exitLoop < number.length; exitLoop++) number[exitLoop] = 0;
 		return pointer;
 	}
 }

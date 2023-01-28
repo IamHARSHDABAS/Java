@@ -1,4 +1,4 @@
-class Solution
+class FindFirstAndLastPositionOfElementInSortedArray
 {
 	public int[] searchRange(int[] array, int target)
 	{
@@ -15,10 +15,7 @@ class Solution
 				}
 				last = exitLoop;
 			}
-			else if (firstDone)
-			{
-				break;
-			}
+			else if (firstDone) break;
 		}
 		return new int[]{first, last};
 	}

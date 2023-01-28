@@ -1,4 +1,4 @@
-class Solution
+class FindFirstAndLastPositionOfElementInSortedArray
 {
 	public int maxArea(int[] height)
 	{

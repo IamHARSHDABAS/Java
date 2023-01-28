@@ -1,9 +1,11 @@
-class Solution
+class RomanToI
 {
 	public int romanToInt(String number)
 	{
 		String[] array = number.split("");
-		int current = 0, previous = 0, sum = 0;
+		int current = 0;
+		int previous = 0;
+		int sum = 0;
 		for (int exitLoop = array.length; exitLoop > 0; exitLoop--)
 		{
 			switch (array[exitLoop - 1])
@@ -15,15 +17,10 @@ class Solution
 				case "C" -> current = 100;
 				case "D" -> current = 500;
 				case "M" -> current = 1000;
+				default -> current = 0;
 			}
-			if (previous > current)
-			{
-				sum = sum - current;
-			}
-			else
-			{
-				sum = sum + current;
-			}
+			if (previous > current) sum = sum - current;
+			else sum = sum + current;
 			previous = current;
 		}
 		return sum;
