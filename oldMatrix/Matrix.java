@@ -400,23 +400,24 @@ class Matrix
 	}
 	public static void main(String[] args)
 	{
-		Scanner input = new Scanner(System.in);
-		System.out.print("The total number of rows or columns must be 1, 2 or 3\n");
-		System.out.print("Enter total number of rows    : ");
-		int rows = input.nextInt();
-		System.out.print("Enter total number of columns : ");
-		int columns = input.nextInt();
-		boolean rankPass = true;
-		int[][] array = new int[rows][columns];
-		for (int exitLoopOuter = 0; exitLoopOuter < array.length; exitLoopOuter++)
-		{
-			for (int exitLoopInner = 0; exitLoopInner < array[0].length; exitLoopInner++)
+		try (Scanner input = new Scanner(System.in)) {
+			System.out.print("The total number of rows or columns must be 1, 2 or 3\n");
+			System.out.print("Enter total number of rows    : ");
+			int rows = input.nextInt();
+			System.out.print("Enter total number of columns : ");
+			int columns = input.nextInt();
+			boolean rankPass = true;
+			int[][] array = new int[rows][columns];
+			for (int exitLoopOuter = 0; exitLoopOuter < array.length; exitLoopOuter++)
 			{
-				array[exitLoopOuter][exitLoopInner] = input.nextInt();
+				for (int exitLoopInner = 0; exitLoopInner < array[0].length; exitLoopInner++)
+				{
+					array[exitLoopOuter][exitLoopInner] = input.nextInt();
+				}
 			}
+			System.out.print("Your matrix is\n");
+			printArray(array);
+			printRank(array, rankPass);
 		}
-		System.out.print("Your matrix is\n");
-		printArray(array);
-		printRank(array, rankPass);
 	}
 }
