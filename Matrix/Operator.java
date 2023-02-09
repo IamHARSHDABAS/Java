@@ -1,7 +1,5 @@
-import java.util.Arrays;
 import java.util.Scanner;
-
-import temp.*;
+import core.*;
 
 public class Operator {
     public static void main(String[] args) {
@@ -11,17 +9,30 @@ public class Operator {
             int rows = input.nextInt();
             System.out.print("Enter total number of columns : ");
             int columns = input.nextInt();
+            
             int[][] array = new int[rows][columns];
             for (int i = 0; i < array.length; i++) {
                 for (int j = 0; j < array[i].length; j++) {
                     array[i][j] = input.nextInt();
                 }
             }
-            RankOne one = new RankOne();
-            if (one.status(array)) System.out.println("Works");
-            System.out.println(Arrays.toString(one.location(array)));
-            System.out.println("Not works");
-        } catch (Exception e) {
+            
+            if (array.length == 1 || array[0].length == 1) {
+                RankOne one = new RankOne();
+                if (one.status(array)) {
+                    System.out.println("Its Rank is One");
+                }
+            }
+            
+            else if (array.length == 2 || array[0].length == 2) {
+                RankTwo two = new RankTwo();
+                if (two.status(array)) {
+                    System.out.println("Its Rank is Two");
+                }
+            }
+        }
+
+        catch (Exception e) {
             System.out.println("Wrong input");
         }
     }

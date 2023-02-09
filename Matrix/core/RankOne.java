@@ -1,6 +1,4 @@
-package temp;
-
-import java.util.Arrays;
+package core;
 
 public class RankOne {
 
@@ -14,13 +12,7 @@ public class RankOne {
     }
 
     public boolean status(int[][] array) {
-        System.out.println(Arrays.toString(array));
         return one(array) != null;
-    }
-
-    public int[] location(int[][] array) {
-        if (one(array) != null) return one(array);
-        return null;
     }
 
 }
