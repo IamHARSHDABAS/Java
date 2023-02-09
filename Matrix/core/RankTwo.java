@@ -1,7 +1,5 @@
 package core;
 
-import java.lang.reflect.Array;
-
 public class RankTwo {
         
     static int two(int[][] array) {
