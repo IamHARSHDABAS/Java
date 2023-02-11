@@ -21,8 +21,8 @@ public class Main {
         }
         input.close();
 
-        int lengthRow = array.length - 1;
-        int lengthColum = array[0].length - 1;
+        int lengthRow = array.length;
+        int lengthColum = array[0].length;
         if (lengthRow == 1 || lengthColum == 1) one(array);
         else if (lengthRow == 2 || lengthColum == 2) two(array);
     }
@@ -30,14 +30,15 @@ public class Main {
     static void one(int[][] array) {
         RankOne one = new RankOne();
         if (one.rank(array) != 0) System.out.println("Its rank is one");
+        else System.out.println("Its a zero matrix");
     }
 
     static void printRankTwo() {System.out.println("Its rank is two");}
 
     static void two(int[][] array) {
         RankTwo two = new RankTwo();
-        int lengthRow = array.length - 1;
-        int lengthColum = array[0].length - 1;
+        int lengthRow = array.length;
+        int lengthColum = array[0].length;
         if (lengthRow == lengthColum) {
             if (two.square(array) != 0) printRankTwo();
             else one(array);

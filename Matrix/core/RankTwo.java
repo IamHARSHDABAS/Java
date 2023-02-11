@@ -33,7 +33,7 @@ public class RankTwo {
 			int northEast = array[0][x + 1];
 			int southWest = array[1][x];
 			int southEast = array[1][x + 1];
-            if (x + 1 == array[0].length) {
+            if (x + 1 == array[0].length - 1) {
                 northWest = array[0][x + 1];
                 northEast = array[0][0];
                 southWest = array[1][x + 1];
