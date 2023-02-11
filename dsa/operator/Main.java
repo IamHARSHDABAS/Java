@@ -14,10 +14,10 @@ public class Main {
         int userYear = input.nextInt();
         input.close();
         if (year.isLeap(userYear)) {
-            System.out.println("IT is leap year");
+            System.out.println("A leap year");
         }
         else {
-            System.out.println("Nah");
+            System.out.println("Not a leap year");
         }
     }
 
