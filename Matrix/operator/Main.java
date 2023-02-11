@@ -12,7 +12,6 @@ public class Main {
         int rows = input.nextInt();
         System.out.print("Enter total number of columns : ");
         int columns = input.nextInt();
-        
         int[][] array = new int[rows][columns];
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {
@@ -20,11 +19,11 @@ public class Main {
             }
         }
         input.close();
-
         int lengthRow = array.length;
         int lengthColum = array[0].length;
         if (lengthRow == 1 || lengthColum == 1) one(array);
         else if (lengthRow == 2 || lengthColum == 2) two(array);
+        else three(array);
     }
 
     static void one(int[][] array) {
@@ -49,6 +48,27 @@ public class Main {
         }
         else {
             if (two.column(array) != 0) printRankTwo();
+            else one(array);
+        }
+    }
+
+    static void printRankThree() {System.out.println("Its rank is three");}
+
+    // TODO rank3 to rank2
+    static void three(int[][] array) {
+        RankThree three = new RankThree();
+        int lengthRow = array.length;
+        int lengthColum = array[0].length;
+        if (lengthRow == lengthColum) {
+            if (three.square(array) != 0) printRankThree();
+            else one(array);
+        }
+        else if (lengthRow > lengthColum) {
+            if (three.row(array) != 0) printRankThree();
+            else one(array);
+        }
+        else {
+            if (three.column(array) != 0) printRankThree();
             else one(array);
         }
     }
