@@ -29,7 +29,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        twoSum(array1D());
+        // twoSum(array1D());
     }
 
     /*
