@@ -32,25 +32,25 @@ public class RankThree {
         int southEast;
         boolean exit = false;
         for (int x = 1; !exit; x++) {
-            if (x + 1 == array.length) {
-                northWest = array[x][0];
-                north     = array[x + 1][0];
+            if (x == array.length - 1) {
+                northWest = array[x - 1][0];
+                north     = array[x][0];
                 northEast = array[0][0];
-                west      = array[x][1];
-                center    = array[x + 1][1];
+                west      = array[x - 1][1];
+                center    = array[x][1];
                 east      = array[0][1];
-                southWest = array[x][2];
-                south     = array[x + 1][2];
+                southWest = array[x - 1][2];
+                south     = array[x][2];
                 southEast = array[0][2];
             }
             else if (x == array.length) {
-                northWest = array[x + 1][0];
+                northWest = array[x - 1][0];
                 north     = array[0][0];
                 northEast = array[1][0];
-                west      = array[x + 1][1];
+                west      = array[x - 1][1];
                 center    = array[0][1];
                 east      = array[1][1];
-                southWest = array[x + 1][2];
+                southWest = array[x - 1][2];
                 south     = array[0][2];
                 southEast = array[1][2];
                 exit = true;
@@ -59,12 +59,12 @@ public class RankThree {
                 northWest = array[x - 1][0];
                 north     = array[x][0];
                 northEast = array[x + 1][0];
-                west      = array[x - 1][0];
-                center    = array[x][0];
-                east      = array[x + 1][0];
-                southWest = array[x - 1][0];
-                south     = array[x][0];
-                southEast = array[x + 1][0];
+                west      = array[x - 1][1];
+                center    = array[x][1];
+                east      = array[x + 1][1];
+                southWest = array[x - 1][2];
+                south     = array[x][2];
+                southEast = array[x + 1][2];
             }
             rank = rank(northWest, north,  northEast,
                         west,      center, east,
@@ -87,25 +87,25 @@ public class RankThree {
         int southEast;
         boolean exit = false;
         for (int x = 1; !exit; x++) {
-            if (x + 1 == array.length) {
-                northWest = array[0][x];
-                north     = array[0][x + 1];
+            if (x == array[0].length - 1) {
+                northWest = array[0][x - 1];
+                north     = array[0][x];
                 northEast = array[0][0];
-                west      = array[1][x];
-                center    = array[1][x + 1];
+                west      = array[1][x - 1];
+                center    = array[1][x];
                 east      = array[1][0];
-                southWest = array[2][x];
-                south     = array[2][x + 1];
+                southWest = array[2][x - 1];
+                south     = array[2][x];
                 southEast = array[2][0];
             }
-            else if (x == array.length) {
-                northWest = array[0][x];
+            else if (x == array[0].length) {
+                northWest = array[0][x - 1];
                 north     = array[0][0];
                 northEast = array[0][1];
-                west      = array[1][x];
+                west      = array[1][x - 1];
                 center    = array[1][0];
                 east      = array[1][1];
-                southWest = array[2][x];
+                southWest = array[2][x - 1];
                 south     = array[2][0];
                 southEast = array[2][1];
                 exit = true;
