@@ -1,7 +1,9 @@
-import java.util.Scanner;
-import Core.*;
+package operator;
 
-public class Operator {
+import java.util.Scanner;
+import core.*;
+
+public class Main {
     public static void main(String[] args) {
         year();
     }
@@ -10,6 +12,7 @@ public class Operator {
         Scanner input = new Scanner(System.in);
         Year year = new Year();
         int userYear = input.nextInt();
+        input.close();
         if (year.isLeap(userYear)) {
             System.out.println("IT is leap year");
         }
@@ -17,4 +20,5 @@ public class Operator {
             System.out.println("Nah");
         }
     }
+
 }
