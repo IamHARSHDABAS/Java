@@ -21,38 +21,51 @@ public class Main {
         input.close();
         int lengthRow = array.length;
         int lengthColum = array[0].length;
-        if (lengthRow == 1 || lengthColum == 1) one(array);
-        else if (lengthRow == 2 || lengthColum == 2) two(array);
-        else three(array);
+        if (lengthRow == 1 || lengthColum == 1)
+            one(array);
+        else if (lengthRow == 2 || lengthColum == 2)
+            two(array);
+        else
+            three(array);
     }
 
     static void one(int[][] array) {
         RankOne one = new RankOne();
-        if (one.rank(array) != 0) System.out.println("Its rank is one");
-        else System.out.println("Its a zero matrix");
+        if (one.rank(array) != 0)
+            System.out.println("Its rank is one");
+        else
+            System.out.println("Its a zero matrix");
     }
 
-    static void printRankTwo() {System.out.println("Its rank is two");}
+    static void printRankTwo() {
+        System.out.println("Its rank is two");
+    }
 
     static void two(int[][] array) {
         RankTwo two = new RankTwo();
         int lengthRow = array.length;
         int lengthColum = array[0].length;
         if (lengthRow == lengthColum) {
-            if (two.square(array) != 0) printRankTwo();
-            else one(array);
-        }
-        else if (lengthRow > lengthColum) {
-            if (two.row(array) != 0) printRankTwo();
-            else one(array);
-        }
-        else {
-            if (two.column(array) != 0) printRankTwo();
-            else one(array);
+            if (two.square(array) != 0)
+                printRankTwo();
+            else
+                one(array);
+        } else if (lengthRow > lengthColum) {
+            if (two.row(array) != 0)
+                printRankTwo();
+            else
+                one(array);
+        } else {
+            if (two.column(array) != 0)
+                printRankTwo();
+            else
+                one(array);
         }
     }
 
-    static void printRankThree() {System.out.println("Its rank is three");}
+    static void printRankThree() {
+        System.out.println("Its rank is three");
+    }
 
     // TODO rank3 to rank2
     static void three(int[][] array) {
@@ -60,16 +73,20 @@ public class Main {
         int lengthRow = array.length;
         int lengthColum = array[0].length;
         if (lengthRow == lengthColum) {
-            if (three.square(array) != 0) printRankThree();
-            else one(array);
-        }
-        else if (lengthRow > lengthColum) {
-            if (three.row(array) != 0) printRankThree();
-            else one(array);
-        }
-        else {
-            if (three.column(array) != 0) printRankThree();
-            else one(array);
+            if (three.square(array) != 0)
+                printRankThree();
+            else
+                one(array);
+        } else if (lengthRow > lengthColum) {
+            if (three.row(array) != 0)
+                printRankThree();
+            else
+                one(array);
+        } else {
+            if (three.column(array) != 0)
+                printRankThree();
+            else
+                one(array);
         }
     }
 
