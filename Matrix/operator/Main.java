@@ -67,27 +67,51 @@ public class Main {
         System.out.println("Its rank is three");
     }
 
-    // TODO rank3 to rank2
     static void three(int[][] array) {
         RankThree three = new RankThree();
         int lengthRow = array.length;
         int lengthColum = array[0].length;
+        boolean rankPass = true;
         if (lengthRow == lengthColum) {
-            if (three.square(array) != 0)
+            if (three.square(array) != 0) {
+                rankPass = false;
                 printRankThree();
-            else
-                one(array);
+            }
         } else if (lengthRow > lengthColum) {
-            if (three.row(array) != 0)
+            if (three.row(array) != 0) {
+                rankPass = false;
                 printRankThree();
-            else
-                one(array);
+            }
         } else {
-            if (three.column(array) != 0)
+            if (three.column(array) != 0) {
+                rankPass = false;
                 printRankThree();
-            else
-                one(array);
+            }
         }
+        if (rankPass)
+            one(array);
+    }
+
+    static void threeToTwo(int[][] array) {
+        int row = 0;
+        boolean rankPass = false;
+        RankTwo two = new RankTwo();
+        int[][] arrayTemp = new int[2][array[0].length];
+        while (true) {
+            for (int i = row; i < 2; i++) {
+                arrayTemp[i] = array[i];
+            }
+            if (row == array.length - 2) {
+                rankPass = true;
+                break;
+            }
+            if (two.column(arrayTemp) != 0) {
+                printRankTwo();
+                break;
+            }
+        }
+        if (rankPass)
+            one(arrayTemp);
     }
 
 }
