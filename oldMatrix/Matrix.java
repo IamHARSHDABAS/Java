@@ -70,7 +70,7 @@ class Matrix
 						System.out.print("Its rank is Two\n");
 						return true;
 					}
-				break;
+					break;
 				}
 				else
 				{
@@ -395,7 +395,7 @@ class Matrix
 			{
 				System.out.print(array[exitLoopOuter][exitLoopInner] + " ");
 			}
-		System.out.print("\n");
+			System.out.print("\n");
 		}
 	}
 	public static void main(String[] args)
